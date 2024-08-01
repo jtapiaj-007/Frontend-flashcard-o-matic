@@ -1,0 +1,154 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Navigation Bar */
+.navigationMenu ul {
+  list-style: none;
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.navigationMenu li {
+  display: inline-block;
+}
+
+/* Adding the "/" between Menu Items */
+.navigationMenu li+li:before {
+  padding: 10px;
+  color: gray;
+  content: "/\00a0";
+}
+
+/* Flashcard */
+.flashcard {
+  border: solid 1px lightgray;
+  padding: 10px;
+}
+
+.flashcard:nth-child(odd) {
+  background-color: rgb(225, 221, 221);
+}
+
+.flashcard-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flashcard-header-title {
+  font-size: 25px;
+}
+
+.flashcard-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flashcard-actions button {
+  margin-right: 10px;
+}
+
+.deck-create button {
+  margin-bottom: 10px;
+}
+
+/* VIEW */
+.study-card {
+  border: solid 1px lightgray;
+  padding: 10px;
+}
+
+.study-card div {
+  padding: 10px;
+}
+
+.study-card-title {
+  font-size: 20px;
+}
+
+.study-card-actions button, .deck-create-actions button,
+.decks-view-actions button, .decks-cards-view-actions button,
+.card-actions button {
+  margin-right: 10px;
+}
+
+/* DECKS View*/
+.decks-view, .decks-cards-view {
+  padding: 10px;
+}
+
+.decks-view-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.decks-card {
+  border: solid 1px lightgray;
+  padding: 10px;
+}
+
+.deck-card-content {
+  display: flex;
+}
+
+.deck-card-content div {
+  margin: 10px;
+  flex: 1;
+  color: gray;
+}
+
+.decks-cards-view-actions {
+  display: flex;
+  justify-content: right;
+}
+
+.form-create-card {
+  padding: 10px;
+}
+
+.form-deck .deck-create-actions button, .card-actions button {
+  margin-top: 10px;
+}
+
+.form-deck label{
+  padding-top: 10px;
+}
+
+.form-deck input, textarea {
+  width: 100%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
