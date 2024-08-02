@@ -28,7 +28,7 @@
   color: #61dafb;
 }
 
-/* Navigation Bar */
+/* NavigationMenu */
 .navigationMenu ul {
   list-style: none;
   background-color: lightgray;
@@ -39,14 +39,17 @@
   display: inline-block;
 }
 
-/* Adding the "/" between Menu Items */
 .navigationMenu li+li:before {
   padding: 10px;
   color: gray;
   content: "/\00a0";
 }
 
-/* Flashcard */
+/* DeckList */
+.decklist-create button {
+  margin-bottom: 10px;
+}
+
 .flashcard {
   border: solid 1px lightgray;
   padding: 10px;
@@ -74,11 +77,7 @@
   margin-right: 10px;
 }
 
-.deck-create button {
-  margin-bottom: 10px;
-}
-
-/* VIEW */
+/* Study */
 .study-card {
   border: solid 1px lightgray;
   padding: 10px;
@@ -92,18 +91,18 @@
   font-size: 20px;
 }
 
-.study-card-actions button, .deck-create-actions button,
-.decks-view-actions button, .decks-cards-view-actions button,
+.study-card-actions button, .deckcreate-actions button,
+.deck-actions button, .decks-cards-view-actions button,
 .card-actions button {
   margin-right: 10px;
 }
 
-/* DECKS View*/
-.decks-view, .decks-cards-view {
-  padding: 10px;
+/* Deck */
+.deck-cards {
+  padding-top: 15px;
 }
 
-.decks-view-actions {
+.deck-actions {
   display: flex;
   justify-content: space-between;
 }
@@ -113,6 +112,7 @@
   padding: 10px;
 }
 
+/* Card */
 .deck-card-content {
   display: flex;
 }
@@ -128,19 +128,16 @@
   justify-content: right;
 }
 
-.form-create-card {
-  padding: 10px;
-}
-
-.form-deck .deck-create-actions button, .card-actions button {
+/* CreateDeck */
+.deckcreate-form .deckcreate-actions button, .card-actions button {
   margin-top: 10px;
 }
 
-.form-deck label{
+.deckcreate-form label{
   padding-top: 10px;
 }
 
-.form-deck input, textarea {
+.deckcreate-form input, textarea {
   width: 100%;
 }
 

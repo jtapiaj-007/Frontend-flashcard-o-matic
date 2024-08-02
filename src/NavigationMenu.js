@@ -10,7 +10,7 @@ function NavigationMenu({links}) {
     );
 
     return(
-        <div className="navigationMenu">
+        <div className="container navigationMenu">
             <ul>{items}</ul>
         </div>
     );

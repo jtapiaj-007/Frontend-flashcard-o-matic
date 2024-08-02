@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { listDecks, deleteDeck } from './utils/api/index';
 
 function DeckList() {
-    const [decks, setDecks] = useState({});
+  const [decks, setDecks] = useState({});
   const navigate = useNavigate();
 
   // Handlers
@@ -51,48 +51,34 @@ function DeckList() {
   );
   },[]);
 
-  let items;
-
-  if(!decks && Object.keys(decks).length === 0) {
-    // items = <NotFound />;
-  }
-  else {
-    // TODO: Check why value.cards.length is causing TypeError: Cannot read properties of undefined (reading 'length') in UNITEST
-    // I believe this is because MOCK is returning a single OBJECT rather than an ARRAY of OBJECTs.
-
-    items = Object.entries(decks).map(([key, value], index) => (
-      <div key={index} className="flashcard">
-        <div className="flashcard-header">
-          <label className="flashcard-header-title">{value.name}</label>
-          <label>{value.cards.length} cards</label> 
+  const items = Object.entries(decks).map(([key, value], index) => (
+    <div key={index} className="flashcard">
+      <div className="flashcard-header">
+        <label className="flashcard-header-title">{value.name}</label>
+        <label>{value.cards.length} cards</label> 
+      </div>
+      <div>
+        <label>{value.description}</label>
+      </div>
+      <div className="flashcard-actions">
+        <div>
+          <button type="button" className="btn btn-secondary" onClick={() => viewHandler(value.id)}>View</button>
+          <button type="button" className="btn btn-primary" onClick={() => studyHandler(value.id)}>Study</button>
         </div>
         <div>
-          <label>{value.description}</label>
-        </div>
-        <div className="flashcard-actions">
-          <div>
-            {/* <input type="button" value="view" onClick={() => viewHandler(value.id)} /> */}
-            <button type="button" className="btn btn-secondary" onClick={() => viewHandler(value.id)}>View</button>
-            {/* <input type="button" value="study" onClick={() => studyHandler(value.id)}/> */}
-            <button type="button" className="btn btn-primary" onClick={() => studyHandler(value.id)}>Study</button>
-          </div>
-          <div>
-            {/* <input type="button" value="delete" onClick={() => deleteHandler(value.id)} /> */}
-            <button type="button" className="btn btn-danger" onClick={() => deleteHandler(value.id)}>Delete</button>
-          </div>
+          <button type="button" className="btn btn-danger" onClick={() => deleteHandler(value.id)}>Delete</button>
         </div>
       </div>
-    ));
-  }
+    </div>
+  ));
 
   return(
-    <>
-        <div className="deck-create">
+    <div className="container">
+        <div className="decklist-create">
             <button type="button" className="btn btn-secondary" onClick={clickHander}>Create Deck</button>
         </div>
-        {/* <input type="button" value="Create Deck" onClick={clickHander}/> */}
         <div>{items}</div>
-    </>
+    </div>
   );
 }
 

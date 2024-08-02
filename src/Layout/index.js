@@ -6,8 +6,6 @@ function Layout() {
   return (
     <>
       <Header />
-      <div className="container">
-      </div>
     </>
   );
 }

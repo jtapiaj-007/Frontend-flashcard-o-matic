@@ -12,7 +12,6 @@ function Deck() {
     const [deck, setDeck] = useState({});
     const [cards, setCards] = useState([]);
 
-    // Card Operations
     const removeCard = (cardId) => {
         setCards(cards.filter((card, index) => card.id !== cardId));
         const abortSignal = new AbortController();
@@ -72,12 +71,6 @@ function Deck() {
         );
     }, [deckId]);
 
-    // TODO: Remove!
-    // This should not happen though...
-    if(deck && Object.keys(deck).length === 0) {
-        return <p>Loading...</p>;
-    }
-
     const items = cards.map((card, index) => (
         <Card key={index} card={card} removeCard={() => removeCard(card.id)}/>
     ));
@@ -91,26 +84,21 @@ function Deck() {
     return (
         <>
             <NavigationMenu links={links}/>
-            <div className="decks-view">
+            <div className="container">
                 <h1>{deck.name}</h1>
                 <p>{deck.description}</p>
-                <div className="decks-view-actions">
+                <div className="deck-actions">
                     <div>
-                        {/* <input type="button" value="Edit" onClick={deckEditHandler}/>
-                        <input type="button" value="Study" onClick={deckStudyHandler}/>
-                        <input type="button" value="Add Cards" onClick={deckAddCardsHandler}/> */}
-
                         <button type="button" className="btn btn-secondary" onClick={deckEditHandler}>Edit</button>
                         <button type="button" className="btn btn-primary" onClick={deckStudyHandler}>Study</button>
                         <button type="button" className="btn btn-primary" onClick={deckAddCardsHandler}>Add Cards</button>
                     </div>
                     <div>
-                        {/* <input type="button" value="Delete" onClick={deckDeleteHandler}/> */}
                         <button type="button" className="btn btn-danger" onClick={deckDeleteHandler}>Delete</button>
                     </div>
                 </div>
             </div>
-            <div className="decks-cards-view">
+            <div className="container deck-cards">
                 <h2>Cards</h2>
                 <div>
                     { !items ? null : items}

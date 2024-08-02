@@ -5,17 +5,12 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { createDeck, readDeck, updateDeck } from './utils/api/index';
 import NavigationMenu from './NavigationMenu';
 
-// TODO: loading the page is causing a WARNING: 
-// A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from
-// undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input 
-// element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components.
-
 function CreateDeck() {
     const location = useLocation();
     const navigate = useNavigate();
     const { deckId } = useParams();
     const [deck, setDeck] = useState({});
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({ name: "", description: "" });
     const isNewRequest = location.pathname.includes('/decks/new');
     const viewTitle = isNewRequest ? "Create Deck" : "Edit Deck";
 
@@ -28,6 +23,36 @@ function CreateDeck() {
         }
     }
 
+    const create = () => {
+        const abortSignal = new AbortController();
+        const response = createDeck(formData, abortSignal.signal);
+
+        response.then(
+            (results) => {
+                navigate(`/decks/${results.id}`);
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    }
+
+    const update = () => {
+        const abortSignal = new AbortController();
+        const updatedDeck = { ...formData, id: deckId };
+        const response = updateDeck(updatedDeck, abortSignal.signal);
+
+        response.then(
+            () => {
+                navigate(`/decks/${deckId}`);
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    }
+
+    // Handlers
     const changeHandler = (e) => {
         setFormData({
                 ...formData,
@@ -37,35 +62,12 @@ function CreateDeck() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const abortSignal = new AbortController();
 
-        // CREATE
         if(isNewRequest) {
-            const response = createDeck(formData, abortSignal.signal);
-
-            response.then(
-                (results) => {
-                    navigate(`/decks/${results.id}`);
-                },
-                (error) => {
-                    console.error(error);
-                }
-            );
+            create();
         }
-
-        // UPDATE
         else {
-            const updatedDeck = { ...formData, id: deckId };
-            const response = updateDeck(updatedDeck, abortSignal.signal);
-
-            response.then(
-                () => {
-                    navigate(`/decks/${deckId}`);
-                },
-                (error) => {
-                    console.error(error);
-                }
-            );
+            update();
         }
     }
 
@@ -93,9 +95,9 @@ function CreateDeck() {
     return (
         <>
             <NavigationMenu links={links}/>
-            <div>
+            <div className='container'>
                 <h1>{viewTitle}</h1>
-                <form className='form-deck'>
+                <form className='deckcreate-form'>
                     <label htmlFor='name'>Name</label>
                     <br/>
                     <input
@@ -117,9 +119,7 @@ function CreateDeck() {
                         placeholder='Brief description of the deck'
                     />
                     <br/>
-                    {/* <input type='button' value='Cancel' onClick={goHome} />
-                    <input type='submit' value='Submit'/> */}
-                    <div className='deck-create-actions'>
+                    <div className='deckcreate-actions'>
                         <button type="button" className="btn btn-secondary" onClick={goBack}>Cancel</button>
                         <button type="button" className="btn btn-primary" onClick={submitHandler}>Submit</button>
                     </div>
