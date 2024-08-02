@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import App from './App';
 
 import CreateCard from './CreateCard';
 import CreateDeck from './CreateDeck';
@@ -12,7 +11,7 @@ import Study from './Study';
 function RootRouter() {
     return (
         <Routes>
-            <Route path="/" element={<App />} >
+            <Route path="/">
                 <Route path='' element={<DeckList />} />
                 <Route path="decks/new" element={<CreateDeck />} />
                 <Route path="decks/:deckId/edit" element={<CreateDeck />} />

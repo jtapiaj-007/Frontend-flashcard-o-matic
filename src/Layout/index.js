@@ -1,8 +1,5 @@
 import React from "react";
-import { Outlet, Switch } from "react-router-dom";
-
 import Header from "./Header";
-import RootRouter from "../RootRouter";
 
 function Layout() {
 
@@ -10,10 +7,6 @@ function Layout() {
     <>
       <Header />
       <div className="container">
-        <Outlet />
-        {/* <Switch>
-          <RootRouter/>
-        </Switch> */}
       </div>
     </>
   );
